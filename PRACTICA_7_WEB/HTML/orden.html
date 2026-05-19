@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café y a gusto... | Hacer Pedido</title>
+    <link rel="stylesheet" href="../CSS/orden.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <div class="logo-placeholder"><img src="../img/logo.jpg" alt="logo"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="#">Nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content-area">
+        <section class="order-section">
+            <h2>Personaliza tu Pausa Ideal</h2>
+            <p class="section-subtitle">Completa los datos para procesar tu orden de inmediato.</p>
+
+            <form class="order-form" id="orderForm" onsubmit="return false;">
+
+                <!-- ── SECCIÓN 1: IDENTIFICACIÓN ── -->
+                <fieldset class="form-card">
+                    <legend>1. Datos de Identificación</legend>
+
+                    <!-- [Buen UX] Campo de texto libre único -->
+                    <div class="form-group">
+                        <label for="nombre-completo">Nombre completo</label>
+                        <input type="text" id="nombre-completo" name="nombre-completo"
+                               placeholder="Ej. Ana Martínez">
+                        <span class="error-msg" id="error-nombre"></span>
+                    </div>
+
+                    <!-- [Anti-patrón] CURP obligatorio de 18 caracteres -->
+                    <div class="form-group">
+                        <label for="curp" class="required-label">CURP <span class="req-star">*</span></label>
+                        <input type="text" id="curp" name="curp" required
+                               minlength="18" maxlength="18"
+                               placeholder="Ingresa los 18 caracteres de tu CURP"
+                               autocomplete="off">
+                        <span class="error-msg" id="error-curp"></span>
+                    </div>
+
+                    <!-- [Anti-patrón] Dirección única sin división ni autocompletado -->
+                    <div class="form-group">
+                        <label for="direccion" class="required-label">Dirección Completa de Envío <span class="req-star">*</span></label>
+                        <textarea id="direccion" name="direccion" required rows="6"
+                                  placeholder="Escribe aquí toda tu dirección: calle, número, colonia, código postal, ciudad, estado, referencias... todo junto."></textarea>
+                        <span class="error-msg" id="error-direccion"></span>
+                    </div>
+
+                    <!-- [Buen UX] Género opcional e incluyente -->
+                    <div class="form-group">
+                        <label>Género <span class="optional-tag">(Opcional)</span></label>
+                        <div class="radio-group-inline">
+                            <label class="radio-label">
+                                <input type="radio" name="genero" value="femenino"> Femenino
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="genero" value="masculino"> Masculino
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="genero" value="no-binario"> No binario
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="genero" value="prefiero-no-decir"> Prefiero no decirlo
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- ── SECCIÓN 2: PRODUCTO ── -->
+                <fieldset class="form-card">
+                    <legend>2. Selección del Producto</legend>
+
+                    <!-- [Buen UX] Radio buttons que cambian el select dinámicamente -->
+                    <div class="form-group">
+                        <label>¿Qué deseas ordenar hoy?</label>
+                        <div class="radio-group-inline">
+                            <label class="radio-label">
+                                <input type="radio" name="tipo-compra" id="tipo-menu" value="menu">
+                                Menú Regular
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="tipo-compra" id="tipo-promocion" value="promocion">
+                                Promociones Especiales
+                            </label>
+                        </div>
+                        <span class="error-msg" id="error-tipo-compra"></span>
+                    </div>
+
+                    <!-- [Anti-patrón] Select deshabilitado hasta elegir tipo; solo permite 1 producto -->
+                    <div class="form-group" id="container-select-menu">
+                        <label for="producto-menu">Selecciona tu producto del Menú</label>
+                        <select id="producto-menu" name="producto-menu" disabled>
+                            <option value="">-- Primero elige Menú Regular --</option>
+                            <option value="latte-vainilla">Latte Vainilla</option>
+                            <option value="americano-clasico">Americano Clásico</option>
+                            <option value="mocha-blanco">Mocha Blanco</option>
+                            <option value="caramel-crunch">Caramel Crunch</option>
+                            <option value="croissant-jamon-queso">Croissant Jamón/Queso</option>
+                            <option value="cheesecake-frutos-rojos">Cheesecake Frutos Rojos</option>
+                            <option value="combo-ejecutivo">Combo Ejecutivo</option>
+                            <option value="combo-dulce-manana">Combo Dulce Mañana</option>
+                        </select>
+                        <span class="error-msg" id="error-producto-menu"></span>
+                    </div>
+
+                    <div class="form-group hidden" id="container-select-promo">
+                        <label for="producto-promo">Selecciona tu Promoción</label>
+                        <select id="producto-promo" name="producto-promo" disabled>
+                            <option value="">-- Primero elige Promociones --</option>
+                            <option value="2x1-lattes">2x1 en Lattes</option>
+                            <option value="combo-desayuno">Combo Desayuno</option>
+                            <option value="tarde-frappes">Tarde de Frappés</option>
+                            <option value="snack-relax">Snack &amp; Relax</option>
+                            <option value="fidelidad-cafe">Fidelidad Café</option>
+                            <option value="muffin-dia">Muffin del Día</option>
+                            <option value="smoothie-tropical">Smoothie Tropical</option>
+                            <option value="capuccino-cookie">Capuccino &amp; Cookie</option>
+                        </select>
+                        <span class="error-msg" id="error-producto-promo"></span>
+                    </div>
+
+                    <!-- [Anti-patrón] Temperatura numérica libre en lugar de opciones simples -->
+                    <div class="form-group">
+                        <label for="temperatura">Temperatura exacta requerida (°C)</label>
+                        <input type="number" id="temperatura" name="temperatura"
+                               placeholder="Ej. 65" min="0" max="100">
+                        <small class="helper-text">Especifica los grados Celsius ideales para tu bebida.</small>
+                        <span class="error-msg" id="error-temperatura"></span>
+                    </div>
+                </fieldset>
+
+                <!-- ── SECCIÓN 3: MODIFICADORES ── -->
+                <fieldset class="form-card">
+                    <legend>3. Especificaciones y Modificadores</legend>
+
+                    <!-- [Buen UX] Checkboxes múltiples y amigables -->
+                    <div class="form-group">
+                        <label>Ingredientes extra <span class="optional-tag">(Puedes elegir varios)</span></label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="extras" value="crema-batida"> Crema batida
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="extras" value="espresso-extra"> Shot de espresso extra
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="extras" value="chispas-chocolate"> Chispas de chocolate
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="extras" value="jarabe-caramelo"> Jarabe de caramelo
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="extras" value="canela"> Canela en polvo
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- ── SECCIÓN 4: ENTREGA ── -->
+                <fieldset class="form-card">
+                    <legend>4. Datos de Entrega</legend>
+
+                    <!-- [Buen UX] Botones visuales grandes -->
+                    <div class="form-group">
+                        <label>Tipo de consumo</label>
+                        <div class="visual-selector">
+                            <input type="radio" name="tipo-consumo" id="consumir-aqui"
+                                   value="aqui" checked class="visual-radio">
+                            <label for="consumir-aqui" class="visual-box">
+                                <span class="visual-icon">🪑</span>
+                                <span class="visual-title">Para consumir aquí</span>
+                            </label>
+
+                            <input type="radio" name="tipo-consumo" id="para-llevar"
+                                   value="llevar" class="visual-radio">
+                            <label for="para-llevar" class="visual-box">
+                                <span class="visual-icon">🥡</span>
+                                <span class="visual-title">Para llevar</span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- ── SECCIÓN 5: PAGO ── -->
+                <fieldset class="form-card">
+                    <legend>5. Pago y Confirmación</legend>
+
+                    <!-- [Buen UX] Lógica condicional: oculta campos de tarjeta si elige efectivo -->
+                    <div class="form-group">
+                        <label>Método de pago</label>
+                        <div class="radio-group-inline">
+                            <label class="radio-label">
+                                <input type="radio" name="metodo-pago" id="pago-efectivo"
+                                       value="efectivo" checked> Efectivo
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="metodo-pago" id="pago-tarjeta"
+                                       value="tarjeta"> Tarjeta de Crédito/Débito
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campos de tarjeta: ocultos por defecto, visibles solo si elige tarjeta -->
+                    <div id="seccion-tarjeta" class="hidden-card-fields" style="display:none;">
+                        <h4 class="alert-title">Datos de la Tarjeta</h4>
+
+                        <!-- [Anti-patrón] Sin formato automático de bloques de 4 dígitos -->
+                        <div class="form-group">
+                            <label for="num-tarjeta">Número de tarjeta</label>
+                            <input type="text" id="num-tarjeta" name="num-tarjeta"
+                                   placeholder="1234567812345678" maxlength="16"
+                                   autocomplete="off">
+                            <span class="error-msg" id="error-num-tarjeta"></span>
+                        </div>
+
+                        <!-- [Anti-patrón] Campo libre sin máscara ni ejemplo claro -->
+                        <div class="form-group">
+                            <label for="vencimiento">Fecha de vencimiento</label>
+                            <input type="text" id="vencimiento" name="vencimiento"
+                                   placeholder="" maxlength="7" autocomplete="off">
+                            <span class="error-msg" id="error-vencimiento"></span>
+                        </div>
+
+                        <!-- [Anti-patrón] CVV tipo text, visible en pantalla -->
+                        <div class="form-group">
+                            <label for="cvv">Código de seguridad (CVV)</label>
+                            <input type="text" id="cvv" name="cvv"
+                                   placeholder="123" maxlength="4" autocomplete="off">
+                            <span class="error-msg" id="error-cvv"></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-submit-container">
+                    <button type="submit" class="order-btn" id="btnSubmit">Confirmar y Enviar Orden</button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <!-- ── WIDGET DE CHAT ── -->
+    <button class="chat-fab" id="chatFab" aria-label="Abrir chat">
+        <svg class="chat-fab__icon chat-fab__icon--open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <svg class="chat-fab__icon chat-fab__icon--close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+        <span class="chat-fab__badge" id="chatBadge"></span>
+    </button>
+
+    <div class="chat-window" id="chatWindow" role="dialog" aria-label="Chat de asistencia">
+        <div class="chat-header">
+            <div class="chat-header__avatar">☕</div>
+            <div class="chat-header__info">
+                <span class="chat-header__name">Asistente Café</span>
+                <span class="chat-header__status">En línea</span>
+            </div>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput"
+                   placeholder="Escribe tu mensaje..." autocomplete="off" maxlength="500"/>
+            <button class="chat-send-btn" id="chatSendBtn" aria-label="Enviar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <!-- ── FIN WIDGET DE CHAT ── -->
+
+    <script src="../JS/orden.js"></script>
+    <script src="../JS/chat.js"></script>
+</body>
+</html>

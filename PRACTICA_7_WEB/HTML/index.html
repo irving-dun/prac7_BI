@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café y a gusto... | Tu pausa ideal</title>
+    <link rel="stylesheet" href="../CSS/index.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <div class="logo-placeholder"><img src="../img/logo.jpg" alt="logo"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="#">Nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="slider-section">
+        <div class="banner-overlay"></div>
+        <div class="slide-content">
+            <h1>Café y a gusto</h1>
+            <p>Encuentra tu balance en cada sorbo.</p>
+        </div>
+    </section>
+
+    <main class="content-area">
+        <section class="cta-section">
+            <a href="orden.html">
+                <button class="order-btn">Ordenar ahora</button>
+            </a>
+        </section>
+
+        <section class="promotions">
+            <h2>Nuestras Promociones</h2>
+            <div class="promo-grid">
+                <article class="promo-card">
+                    <div class="promo-img-placeholder"><img src="../img/promo1.png" alt="promo1"></div>
+                    <h3>2x1 en Lattes</h3>
+                    <p>Válido todos los martes de 4 PM a 6 PM.</p>
+                </article>
+                <article class="promo-card">
+                    <div class="promo-img-placeholder"><img src="../img/promo2.png" alt="promo2"></div>
+                    <h3>Combo Desayuno</h3>
+                    <p>Tu café favorito + un snack por un precio especial.</p>
+                </article>
+                <article class="promo-card">
+                    <div class="promo-img-placeholder"><img src="../img/promo3.png" alt="promo3"></div>
+                    <h3>Tarde de Frappés</h3>
+                    <p>30% de descuento en todos los frappés grandes.</p>
+                </article>
+                <article class="promo-card">
+                    <div class="promo-img-placeholder"><img src="../img/promo4.png" alt="promo4"></div>
+                    <h3>Snack & Relax</h3>
+                    <p>En la compra de un Baguette, el café americano va por nuestra cuenta.</p>
+                </article>
+                <article class="promo-card">
+                    <div class="promo-img-placeholder"><img src="../img/promo5.png" alt="promo5"></div>
+                    <h3>Muffin del día</h3>
+                    <p>Acompaña tu bebida con un muffin artesanal a mitad de precio.</p>
+                </article>
+                <article class="promo-card">
+                    <div class="promo-img-placeholder"><img src="../img/promo6.png" alt="promo6"></div>
+                    <h3>Fidelidad Café</h3>
+                    <p>¡Tu sexto café es totalmente gratis! Pide tu tarjeta digital.</p>
+                </article>
+                <article class="promo-card">
+                    <div class="promo-img-placeholder"><img src="../img/promo7.png" alt="promo7"></div>
+                    <h3>Capuccino & Cookie</h3>
+                    <p>Disfruta de una galleta recién horneada por solo $1.00 adicional.</p>
+                </article>
+                <article class="promo-card">
+                    <div class="promo-img-placeholder"><img src="../img/promo8.png" alt="promo8"></div>
+                    <h3>Smoothie Tropical</h3>
+                    <p>Prueba nuestros nuevos sabores frutales con 20% de descuento.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== WIDGET DE CHAT ===================== -->
+
+    <!-- Botón flotante para abrir el chat -->
+    <button class="chat-fab" id="chatFab" aria-label="Abrir chat">
+        <svg class="chat-fab__icon chat-fab__icon--open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <svg class="chat-fab__icon chat-fab__icon--close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+        <span class="chat-fab__badge" id="chatBadge"></span>
+    </button>
+
+    <!-- Ventana del chat -->
+    <div class="chat-window" id="chatWindow" role="dialog" aria-label="Chat de asistencia">
+        <div class="chat-header">
+            <div class="chat-header__avatar">☕</div>
+            <div class="chat-header__info">
+                <span class="chat-header__name">Asistente Café</span>
+                <span class="chat-header__status">En línea</span>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <!-- Los mensajes se insertan aquí dinámicamente -->
+        </div>
+
+        <div class="chat-input-area">
+            <input
+                type="text"
+                class="chat-input"
+                id="chatInput"
+                placeholder="Escribe tu mensaje..."
+                autocomplete="off"
+                maxlength="500"
+            />
+            <button class="chat-send-btn" id="chatSendBtn" aria-label="Enviar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================== FIN WIDGET DE CHAT ===================== -->
+
+    <script src="../JS/chat.js"></script>
+</body>
+
+</html>
